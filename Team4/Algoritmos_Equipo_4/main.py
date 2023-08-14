@@ -13,12 +13,32 @@
 # para producirlas ya que últimamente se han registrado retrasos en los 
 # tiempos de entrega.
 
+# El punto es usar cotas superiores e inferiores, así que trata de 
+# seguir con eso.
 class Camisas:
     def __init__(self, camisas, dias):
         
         self.camisas = camisas
         self.dias = dias
 
+def ProduccionLineas(x, y, N):
+    
+    # X es el valor de playeras que produce la primera línea
+    PrimeraLinea = x
+    
+    # Y es el valor de playeras que produce la segunda línea
+    SegundaLinea = y
+    
+    día = []
+    día += [PrimeraLinea]
+    día += [SegundaLinea]
+    
+    Pedido = N
+    
+    if Pedido < PrimeraLinea:
+        if Pedido < SegundaLinea:
+            print("Prueba")
+            
 
 # Resulta que ha llegado una nueva máquina embotelladora de refrescos, 
 # el contenedor principal de la máquina tiene forma cilíndrica. Se sabe 
