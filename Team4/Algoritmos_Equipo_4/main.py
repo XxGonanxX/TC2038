@@ -95,15 +95,24 @@ def main():
     
     print("Bienvenido al sistema de embotelladora")
     print("Ingrese el radio del cilindro")
-    radio = int(input())
+    radio = float(input())
     print("Ingrese la altura del cilindro")
-    altura = int(input())
+    altura = float(input())
     print("Ingrese la cantidad de mililitros que debe contener cada envase")
     M = int(input())
     ProduccionEmbotelladora(radio, altura, M)
     print("")
     
-    print("Gracias por usar nuestros sistemas de producción, este sistema \n fue desarrollado por Alan Patricio González Bernal y Alan Rodrigo Castillo Sánchez")
+    print("Gracias por usar nuestros sistemas de producción, este sistema\nfue desarrollado por Alan Patricio González Bernal y Alan Rodrigo Castillo Sánchez")
     
 # Se llama main
 main()
+
+#Inputs de prueba
+
+''' 
+1.- 1000, 2000, 10000, 1000, 500, 600
+2.- 50, 10, 500, 5, 6, 500
+3.- 100, 200, 1000, 100, 200, 100
+4.- 85, 58, 265, 4.6, 2.5, 450
+''' 
