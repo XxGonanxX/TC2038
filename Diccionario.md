@@ -34,7 +34,7 @@ A X B = {(1,a),(1,b),(2,a),(2,b)}
 Cualquier suconjunto de un producto cruz, es decir, 
 conjunto donde sus elementos son tuplas.
 EJ:
-R = A X B == R = {(a,b| a ∈A, b ∈B) 
+R = A X B == R = {(a,b| a ∈ A, b ∈ B) 
 (La relación de A CRUZ (O sea, producto cartesiano) B es 
 igual a la relación de a y b donde a es formada por 
 elementos de A y b está formada por elementos de B)
@@ -52,10 +52,13 @@ No dirigido = A --- B
 
 
 ## Reflexividad
-Una relación que para cada elemento 
+Una relación que para cada elemento a ∈ A existe un par ordenado (a,a) ∈ R.
 
 ## Simétrica
+Una relación para cada elemento (a,b) ∈ R existe un par ordenado (b, a) ∈ R.
 
 ## Antisimétrica
+Una relación para cada elemento (a,b) ∈ R, no existe (b,a) ∈ R. 
 
 ## Transitiva
+Una relación para cada elemento (a,b) ∈ R y (b,c) ∈ R, y (a,c) ∈ R.
