@@ -105,4 +105,8 @@ Estimación que nos indica la cantidad de recursos que requiere un algoritmo con
 
 <img width="608" alt="Captura de pantalla 2023-08-18 a la(s) 6 21 41 p m" src="https://github.com/XxGonanxX/TC2038/assets/89163839/ac0800c3-7cce-4354-b9c3-215150abffaa">
 
+## Merge Sort
+Algoritmo recursivo que toma una lista desordenada, y la ordena mediante hacer listas más pequeñas de la original hasta que sean de solo 1 elemento.  
+EJ:   
+![Merge-Sort-Algorithm-(1)](https://github.com/XxGonanxX/TC2038/assets/89163839/b456833a-9d71-4b4a-9e6e-1a886392d90a)
 
