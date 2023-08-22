@@ -40,7 +40,8 @@ def MergeSort(lista):
 
 def main():
     # ingresa numero de elementos separados por comas
-    # 38, 27, 43, 3, 9, 82, 10
+
+    print("Por favor, ingrese la lista de números separados por comas, sin los corchetes:")
     lista = [int(x) for x in input().split(',')]
     print("La lista ingresada es:")
     print(lista)
@@ -49,4 +50,11 @@ def main():
     print(lista)
     
 main()
-        
+
+    # Datos de entrada:
+    # 38, 27, 43, 3, 9, 82, 10
+    # 100, 400, 125, 10, 0, 20, 642, 13, 63, 35, 25, 85, 7, 2, 6
+    #
+    # Salida:
+    # [3, 9, 10, 27, 38, 43, 82]
+    # [0, 2, 6, 7, 10, 13, 20, 25, 35, 63, 85, 100, 125, 400, 642]
