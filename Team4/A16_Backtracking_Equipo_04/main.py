@@ -51,83 +51,106 @@
 # Indica en los comentarios, el criterio de avance, ejemplo: hacia el frente y 
 # hacia abajo, etc. 
 
-import numpy as np
+# Función para validar si una casilla es válida
+def es_valida(x, y, laberinto, solucion):
+    return 0 <= x < len(laberinto) and 0 <= y < len(laberinto[0]) and laberinto[x][y] == 1 and solucion[x][y] == 0
 
-# Función para verificar si una casilla es válida para moverse
-def is_valid(maze, x, y):
-    return 0 <= x < len(maze) and 0 <= y < len(maze[0]) and maze[x][y] == 1
+# Backtracking: Resuelve el laberinto utilizando la técnica de "backtracking"
+def backtracking_laberinto(m, n, laberinto):
+    solucion = [[0] * n for _ in range(m)]
+    
+    def resolver(x, y):
+        if x == m - 1 and y == n - 1:  # Llegamos a la salida
+            solucion[x][y] = 1
+            return True
 
-# Función para resolver el laberinto mediante Backtracking
-def solve_backtracking(maze, x, y, solution):
-    if x == len(maze) - 1 and y == len(maze[0]) - 1:
-        solution[x][y] = 1
-        return True
-    if is_valid(maze, x, y):
-        solution[x][y] = 1
-        # Intentar mover hacia la derecha (DFS)
-        if solve_backtracking(maze, x, y + 1, solution):
-            return True
-        # Intentar mover hacia abajo (DFS)
-        if solve_backtracking(maze, x + 1, y, solution):
-            return True
-        solution[x][y] = 0
+        # Intentar moverse hacia abajo primero
+        if es_valida(x + 1, y, laberinto, solucion):
+            solucion[x][y] = 1
+            if resolver(x + 1, y):
+                return True
+            solucion[x][y] = 0  # Retroceder si no se encontró una solución en esta dirección
+
+        # Si no puede moverse hacia abajo, intentar hacia la derecha
+        elif es_valida(x, y + 1, laberinto, solucion):
+            solucion[x][y] = 1
+            if resolver(x, y + 1):
+                return True
+            solucion[x][y] = 0  # Retroceder si no se encontró una solución en esta dirección
+
+        # Si no puede moverse hacia la derecha, intentar hacia la izquierda
+        elif es_valida(x, y - 1, laberinto, solucion):
+            solucion[x][y] = 1
+            if resolver(x, y - 1):
+                return True
+            solucion[x][y] = 0  # Retroceder si no se encontró una solución en esta dirección
+
+        # Si no puede moverse hacia arriba ni hacia la izquierda, intentar hacia arriba
+        elif es_valida(x - 1, y, laberinto, solucion):
+            solucion[x][y] = 1
+            if resolver(x - 1, y):
+                return True
+            solucion[x][y] = 0  # Retroceder si no se encontró una solución en esta dirección
+
         return False
 
-# Función para verificar si es prometedor explorar desde una casilla
-def is_promising(maze, x, y, solution):
-    return 0 <= x < len(maze) and 0 <= y < len(maze[0]) and maze[x][y] == 1 and solution[x][y] == 0
+    if not resolver(0, 0):
+        print("No se encontró una solución utilizando Backtracking")
+    else:
+        print("Backtracking")
+        for fila in solucion:
+            print(" ".join(map(str, fila)))
 
-# Función para resolver el laberinto mediante Branch and Bound
-def solve_branch_and_bound(maze, x, y, solution):
-    if x == len(maze) - 1 and y == len(maze[0]) - 1:
-        solution[x][y] = 1
-        return True
-    if is_promising(maze, x, y, solution):
-        solution[x][y] = 1
-        if solve_branch_and_bound(maze, x + 1, y, solution) or solve_branch_and_bound(maze, x, y + 1, solution):
+
+
+# Ramificación y Poda: Resuelve el laberinto utilizando la técnica de "ramificación y poda"
+def ramificacion_y_poda(m, n, laberinto):
+    solucion = [[0] * n for _ in range(m)]
+    
+    def resolver(x, y):
+        if x == m - 1 and y == n - 1:  # Llegamos a la salida
+            solucion[x][y] = 1
             return True
-        solution[x][y] = 0
-        return False
+        if es_valida(x, y, laberinto, solucion):
+            solucion[x][y] = 1
 
-# Función principal para resolver el laberinto
-def solve_maze(maze):
-    M, N = len(maze), len(maze[0])
+            # Movimiento hacia abajo
+            if resolver(x + 1, y):
+                return True
+            # Movimiento hacia la derecha
+            if resolver(x, y + 1):
+                return True
 
-    # Verificar si el laberinto es válido
-    for row in maze:
-        if len(row) != N or any(val not in [0, 1] for val in row):
-            print("Error: El laberinto no es válido.")
-            return
+            # Si no se encontró una solución, marcamos esta casilla como no válida
+            solucion[x][y] = 0
+            return False
 
-    # Inicializar matrices de solución
-    solution_backtracking = np.zeros((M, N), dtype=int)
-    solution_branch_and_bound = np.zeros((M, N), dtype=int)
-
-    # Resolver mediante Backtracking
-    print("\nBacktracking")
-    if solve_backtracking(maze, 0, 0, solution_backtracking):
-        for row in solution_backtracking:
-            print(" ".join(map(str, row)))
+    if not resolver(0, 0):
+        print("No se encontró una solución utilizando Ramificación y Poda")
     else:
-        print("No se encontró solución para el laberinto.")
+        print("Ramificación y Poda")
+        for fila in solucion:
+            print(" ".join(map(str, fila)))
 
-    # Resolver mediante Branch and Bound
-    print("\nRamificación y Poda")
-    if solve_branch_and_bound(maze, 0, 0, solution_branch_and_bound):
-        for row in solution_branch_and_bound:
-            print(" ".join(map(str, row)))
-    else:
-        print("No se encontró solución para el laberinto.")
+# Función principal
+def main():
+    try:
+        M, N = map(int, input("Ingrese M y N separados por un espacio: ").split())
+        if M <= 0 or N <= 0:
+            raise ValueError("M y N deben ser enteros positivos")
+
+        laberinto = []
+        for i in range(M):
+            fila = list(map(int, input().split()))
+            if len(fila) != N or any(x not in (0, 1) for x in fila):
+                raise ValueError("Los valores de la fila deben ser 0 o 1")
+            laberinto.append(fila)
+
+        backtracking_laberinto(M, N, laberinto)
+        print()
+        ramificacion_y_poda(M, N, laberinto)
+    except ValueError as e:
+        print(f"Error: {e}")
 
 if __name__ == "__main__":
-    try:
-        M, N = map(int, input("Ingrese M y N separados por espacio: ").split())
-        maze = []
-        print("Ingrese el laberinto:")
-        for _ in range(M):
-            row = list(map(int, input().split()))
-            maze.append(row)
-        
-        solve_maze(maze)
-    except ValueError:
-        print("Error: Ingrese valores enteros para M y N.")
+    main()
