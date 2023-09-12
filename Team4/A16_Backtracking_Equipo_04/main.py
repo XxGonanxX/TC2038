@@ -85,7 +85,7 @@ def backtracking_laberinto(m, n, laberinto):
                 return True
             solucion[x][y] = 0  # Retroceder si no se encontró una solución en esta dirección
 
-        # Si no puede moverse hacia arriba ni hacia la izquierda, intentar hacia arriba
+        # Si no puede moverse hacia derecha ni hacia la izquierda, intentar hacia arriba
         elif es_valida(x - 1, y, laberinto, solucion):
             solucion[x][y] = 1
             if resolver(x - 1, y):
