@@ -18,7 +18,7 @@ def print_sorted_suffix_array(text):
 
 # Ejemplo de uso
 def main():
-    input_string = "hello world"
+    input_string = "banana"
     print("Sufijos ordenados alfabéticamente:")
     print_sorted_suffix_array(input_string)
     
