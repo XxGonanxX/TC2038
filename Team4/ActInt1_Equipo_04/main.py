@@ -1,7 +1,7 @@
 # Alan Patricio González Bernal - A01067546
 # Alan Rodrigo Castillo Sánchez - A01708668
 
-# escribe un programa en C++ que lea 5 archivos de texto (de nombre fijo, no se piden al usuario) que 
+# escribe un programa en Python que lea 5 archivos de texto (de nombre fijo, no se piden al usuario) que 
 # contienen exclusivamente caracteres del 0 al 9, caracteres entre A y F y saltos de línea.
 
 # Los archivos de transmisión contienen caracteres de texto que representan el envío de datos de un
@@ -53,4 +53,95 @@
 #   parte3
 #       posiciónInicial posiciónFinal (de substring común más largo entre archivos de transmisión)
 
+
+# primero, leeremos todos los archivos, primero los transmision y luego los mcode, cada uno en una lista separada
+
+# leer archivos de transmision
+transmission1 = []
+transmission2 = []
+
+with open("Team4/ActInt1_Equipo_04/transmission01.txt", "r") as file:
+    for line in file:
+        transmission1.append(line)
+        
+with open("Team4/ActInt1_Equipo_04/transmission02.txt", "r") as file:
+    for line in file:
+        transmission2.append(line)
+        
+# leer archivos de mcode
+mcode1 = []
+mcode2 = []
+mcode3 = []
+
+with open("Team4/ActInt1_Equipo_04/mcode01.txt", "r") as file:
+    for line in file:
+        mcode1.append(line)
+        
+with open("Team4/ActInt1_Equipo_04/mcode02.txt", "r") as file:
+    for line in file:
+        mcode2.append(line)
+        
+with open("Team4/ActInt1_Equipo_04/mcode03.txt", "r") as file:
+    for line in file:
+        mcode3.append(line)
+        
+# ahora, vamos a crear una funcion que nos permita saber si un archivo contiene el codigo de otro archivo
+# esto lo haremos con el metodo de fuerza bruta, visto como Naive
+
+def contains_code(transmission, mcode):
+    # primero, vamos a convertir el archivo de transmision en un string
+    transmission_string = ""
+    for line in transmission:
+        transmission_string += line
+        
+    # ahora, vamos a convertir el archivo de mcode en un string
+    mcode_string = ""
+    for line in mcode:
+        mcode_string += line
+        print(mcode_string)
+        
+    # ahora, vamos a buscar el mcode dentro del transmission
+    if mcode_string in transmission_string:
+        # Necesito saber la posicion en la que inicia el codigo
+        start = transmission_string.find(mcode_string)
+        # Necesito saber la posicion en la que termina el codigo
+        end = start + len(mcode_string)
+        # Necesito imprimir el resultado
+        print("true", start, end)
+        return True
+    else:
+        return False
+    
+# ahora, vamos a crear una funcion que nos permita saber si un archivo contiene el codigo de otro archivo, pero al reves
+
+def contains_code_reversed(transmission, mcode):
+    # primero, vamos a convertir el archivo de transmision en un string
+    transmission_string = ""
+    for line in transmission:
+        transmission_string += line
+        
+    # ahora, vamos a convertir el archivo de mcode en un string
+    mcode_string = ""
+    for line in mcode:
+        mcode_string += line
+        
+    # ahora, vamos a buscar el mcode dentro del transmission
+    if mcode_string[::-1] in transmission_string:
+        # Necesito saber la posicion en la que inicia el codigo
+        start = transmission_string.find(mcode_string[::-1])
+        # Necesito saber la posicion en la que termina el codigo
+        end = start + len(mcode_string)
+        # Necesito imprimir el resultado
+        print("true", start, end)
+        return True
+    else:
+        return False
+    
+# Ahora, vamos a entregarle a la funcion los archivos que queremos analizar
+# print(contains_code(transmission1, mcode1))
+# print(contains_code(transmission1, mcode2))
+print(contains_code(transmission1, mcode3))
+# print(contains_code(transmission2, mcode1))
+# print(contains_code(transmission2, mcode2))
+# print(contains_code(transmission2, mcode3))
 
