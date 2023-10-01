@@ -53,42 +53,92 @@
 #   parte3
 #       posiciónInicial posiciónFinal (de substring común más largo entre archivos de transmisión)
 
+import glob
 
 # primero, leeremos todos los archivos, primero los transmision y luego los mcode, cada uno en una lista separada
+
+print()
+print("Bienvenido al algoritmo de FUERZA BRUTA de detección de código malicioso, desarrollado por Alan Patricio González Bernal y Por Alan Rodrigo Castillo Sánchez")
+print("leyendo archivos...")
+print()
 
 # leer archivos de transmision
 transmission1 = []
 transmission2 = []
 
-with open("Team4/ActInt1_Equipo_04/transmission01.txt", "r") as file:
-    for line in file:
+
+# Directorio donde se encuentran los archivos
+directoriotrans = 'Team4/ActInt1_Equipo_04'
+
+# Patrón para buscar archivos que comiencen con "transmission"
+patrontrans = f'{directoriotrans}/transmission*'
+
+# Obtener una lista de archivos que coinciden con el patrón
+archivostrans = glob.glob(patrontrans)
+
+
+    # Procesa cada archivo según tus necesidades
+print(f"Leyendo archivo: {archivostrans[0]}")
+with open(archivostrans[0], 'r') as f:
+    contenido = f.read()
+    for line in contenido:
         transmission1.append(line)
-        
-with open("Team4/ActInt1_Equipo_04/transmission02.txt", "r") as file:
-    for line in file:
+    print("Lectura exitosa")
+    
+print(f"Leyendo archivo: {archivostrans[1]}")
+with open(archivostrans[1], 'r') as f:
+    contenido = f.read()
+    for line in contenido:
         transmission2.append(line)
+    print("Lectura exitosa")
+    
+
+
         
 # leer archivos de mcode
 mcode1 = []
 mcode2 = []
 mcode3 = []
 
-with open("Team4/ActInt1_Equipo_04/mcode01.txt", "r") as file:
-    for line in file:
+# Directorio donde se encuentran los archivos
+directoriomcode = 'Team4/ActInt1_Equipo_04'
+
+# Patrón para buscar archivos que comiencen con "transmission"
+patronmcode = f'{directoriomcode}/mcode*'
+
+# Obtener una lista de archivos que coinciden con el patrón
+archivosmcode = glob.glob(patronmcode)
+
+
+    # Procesa cada archivo según tus necesidades
+print(f"Leyendo archivo: {archivosmcode[0]}")
+with open(archivosmcode[0], 'r') as f:
+    contenido = f.read()
+    for line in contenido:
         mcode1.append(line)
-        
-with open("Team4/ActInt1_Equipo_04/mcode02.txt", "r") as file:
-    for line in file:
+    print("Lectura exitosa")
+    
+print(f"Leyendo archivo: {archivosmcode[1]}")
+with open(archivosmcode[1], 'r') as f:
+    contenido = f.read()
+    for line in contenido:
         mcode2.append(line)
-        
-with open("Team4/ActInt1_Equipo_04/mcode03.txt", "r") as file:
-    for line in file:
+    print("Lectura exitosa")
+    
+print(f"Leyendo archivo: {archivosmcode[2]}")
+with open(archivosmcode[2], 'r') as f:
+    contenido = f.read()
+    for line in contenido:
         mcode3.append(line)
+    print("Lectura exitosa")
+    
+print()
         
 # ahora, vamos a crear una funcion que nos permita saber si un archivo contiene el codigo de otro archivo
 # esto lo haremos con el metodo de fuerza bruta, visto como Naive
 
 def contains_code(transmission, mcode):
+    
     # primero, vamos a convertir el archivo de transmision en un string
     transmission_string = ""
     for line in transmission:
@@ -98,8 +148,8 @@ def contains_code(transmission, mcode):
     mcode_string = ""
     for line in mcode:
         mcode_string += line
-        print(mcode_string)
-        
+
+
     # ahora, vamos a buscar el mcode dentro del transmission
     if mcode_string in transmission_string:
         # Necesito saber la posicion en la que inicia el codigo
@@ -107,10 +157,10 @@ def contains_code(transmission, mcode):
         # Necesito saber la posicion en la que termina el codigo
         end = start + len(mcode_string)
         # Necesito imprimir el resultado
-        print("true", start, end)
-        return True
+        return True, start, end
     else:
         return False
+
     
 # ahora, vamos a crear una funcion que nos permita saber si un archivo contiene el codigo de otro archivo, pero al reves
 
@@ -132,16 +182,31 @@ def contains_code_reversed(transmission, mcode):
         # Necesito saber la posicion en la que termina el codigo
         end = start + len(mcode_string)
         # Necesito imprimir el resultado
-        print("true", start, end)
-        return True
+        start, end
+        return True, start, end
     else:
         return False
     
+
+
 # Ahora, vamos a entregarle a la funcion los archivos que queremos analizar
-# print(contains_code(transmission1, mcode1))
-# print(contains_code(transmission1, mcode2))
-print(contains_code(transmission1, mcode3))
-# print(contains_code(transmission2, mcode1))
-# print(contains_code(transmission2, mcode2))
-# print(contains_code(transmission2, mcode3))
+print("En el archivo de transmision 1 se encuentra el código mcode 1?", (contains_code(transmission1, mcode1)))
+print("En el archivo de transmision 1 se encuentra el código mcode 2?", (contains_code(transmission1, mcode2)))
+print("En el archivo de transmision 1 se encuentra el código mcode 3?", (contains_code(transmission1, mcode3)))
+print("En el archivo de transmision 2 se encuentra el código mcode 1?", (contains_code(transmission2, mcode1)))
+print("En el archivo de transmision 2 se encuentra el código mcode 2?", (contains_code(transmission2, mcode2)))
+print("En el archivo de transmision 2 se encuentra el código mcode 3?", (contains_code(transmission2, mcode3)))
+print()
+print("El archivo de transmision 1 contiene el codigo de mcode 1 en reversa?", (contains_code_reversed(transmission1, mcode1)))
+print("El archivo de transmision 1 contiene el codigo de mcode 2 en reversa?", (contains_code_reversed(transmission1, mcode2)))
+print("El archivo de transmision 1 contiene el codigo de mcode 3 en reversa?", (contains_code_reversed(transmission1, mcode3)))
+print("El archivo de transmision 2 contiene el codigo de mcode 1 en reversa?", (contains_code_reversed(transmission2, mcode1)))
+print("El archivo de transmision 2 contiene el codigo de mcode 2 en reversa?", (contains_code_reversed(transmission2, mcode2)))
+print("El archivo de transmision 2 contiene el codigo de mcode 3 en reversa?", (contains_code_reversed(transmission2, mcode3)))
+
+
+
+
+
+
 
