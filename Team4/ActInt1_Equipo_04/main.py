@@ -83,14 +83,14 @@ with open(archivostrans[0], 'r') as f:
     contenido = f.read()
     for line in contenido:
         transmission1.append(line)
-    print("Lectura exitosa")
+    print("Lectura exitosa, ahora el archivo {archivostrans[0]} será llamado transmission1")
     
 print(f"Leyendo archivo: {archivostrans[1]}")
 with open(archivostrans[1], 'r') as f:
     contenido = f.read()
     for line in contenido:
         transmission2.append(line)
-    print("Lectura exitosa")
+    print("Lectura exitosa, ahora el archivo {archivostrans[1]} será llamado transmission2")
     
 
 
@@ -116,21 +116,21 @@ with open(archivosmcode[0], 'r') as f:
     contenido = f.read()
     for line in contenido:
         mcode1.append(line)
-    print("Lectura exitosa")
+    print("Lectura exitosa, ahora {archivosmcode[0]} será llamado mcode1")
     
 print(f"Leyendo archivo: {archivosmcode[1]}")
 with open(archivosmcode[1], 'r') as f:
     contenido = f.read()
     for line in contenido:
         mcode2.append(line)
-    print("Lectura exitosa")
+    print("Lectura exitosa, ahora el archivo {archivosmcode[1]} será llamado mcode2")
     
 print(f"Leyendo archivo: {archivosmcode[2]}")
 with open(archivosmcode[2], 'r') as f:
     contenido = f.read()
     for line in contenido:
         mcode3.append(line)
-    print("Lectura exitosa")
+    print("Lectura exitosa, ahora el archivo {archivosmcode[2]} será llamado mcode3")
     
 print()
         
