@@ -1,0 +1,2 @@
+Alan Rodrigo Castillo Sánchez - A01708668: Trabajó en el desarrollo del algoritmo Naive, Búsqueda de Palindromos a fueza bruta y en la documentación del proyecto.
+Alan Patricio González Bernal - A01067546: Trabajó en el desarrollo del algoritmo Naive, Búsqueda de Palindromos a fueza bruta y en la documentación del proyecto.
