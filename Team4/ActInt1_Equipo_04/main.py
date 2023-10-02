@@ -58,7 +58,7 @@ import glob
 # primero, leeremos todos los archivos, primero los transmision y luego los mcode, cada uno en una lista separada
 
 print()
-print("Bienvenido al algoritmo de FUERZA BRUTA de detección de código malicioso, desarrollado por Alan Patricio González Bernal y Por Alan Rodrigo Castillo Sánchez")
+print("Bienvenido al algoritmo de FUERZA BRUTA de detección de código malicioso, desarrollado por Alan Patricio González Bernal y Alan Rodrigo Castillo Sánchez")
 print("leyendo archivos...")
 print()
 
@@ -157,7 +157,7 @@ def contains_code(transmission, mcode):
         # Necesito saber la posicion en la que termina el codigo
         end = start + len(mcode_string)
         # Necesito imprimir el resultado
-        return True, start, end
+        return True, start
     else:
         return False
 
