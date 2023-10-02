@@ -68,10 +68,10 @@ transmission2 = []
 
 
 # Directorio donde se encuentran los archivos
-directoriotrans = 'Team4/ActInt1_Equipo_04'
+directoriotrans =''
 
 # Patrón para buscar archivos que comiencen con "transmission"
-patrontrans = f'{directoriotrans}/transmission*'
+patrontrans = f'transmission*'
 
 # Obtener una lista de archivos que coinciden con el patrón
 archivostrans = glob.glob(patrontrans)
@@ -101,10 +101,10 @@ mcode2 = []
 mcode3 = []
 
 # Directorio donde se encuentran los archivos
-directoriomcode = 'Team4/ActInt1_Equipo_04'
+directoriomcode = ''
 
 # Patrón para buscar archivos que comiencen con "transmission"
-patronmcode = f'{directoriomcode}/mcode*'
+patronmcode = f'mcode*'
 
 # Obtener una lista de archivos que coinciden con el patrón
 archivosmcode = glob.glob(patronmcode)
