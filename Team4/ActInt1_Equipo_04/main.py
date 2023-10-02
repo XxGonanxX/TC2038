@@ -187,52 +187,8 @@ def contains_code2(transmission, mcode):
     
 # ahora, vamos a crear una funcion que nos permita saber si un archivo contiene el codigo de otro archivo, pero al reves
 
-def contains_code_reversed(transmission, mcode):
-    # primero, vamos a convertir el archivo de transmision en un string
-    transmission_string = ""
-    for line in transmission:
-        transmission_string += line
-        
-    # ahora, vamos a convertir el archivo de mcode en un string
-    mcode_string = ""
-    for line in mcode:
-        mcode_string += line
-        
-    # ahora, vamos a buscar el mcode dentro del transmission
-    if mcode_string[::-1] in transmission_string:
-        # Necesito saber la posicion en la que inicia el codigo
-        start = transmission_string.find(mcode_string[::-1])
-        # Necesito saber la posicion en la que termina el codigo
-        end = start + len(mcode_string)
-        # Necesito imprimir el resultado
-        start, end
-        return True, start
-    else:
-        return False
     
-def contains_code_reversed2(transmission, mcode):
-    # primero, vamos a convertir el archivo de transmision en un string
-    transmission_string = ""
-    for line in transmission:
-        transmission_string += line
-        
-    # ahora, vamos a convertir el archivo de mcode en un string
-    mcode_string = ""
-    for line in mcode:
-        mcode_string += line
-        
-    # ahora, vamos a buscar el mcode dentro del transmission
-    if mcode_string[::-1] in transmission_string:
-        # Necesito saber la posicion en la que inicia el codigo
-        start = transmission_string.find(mcode_string[::-1])
-        # Necesito saber la posicion en la que termina el codigo
-        end = start + len(mcode_string)
-        # Necesito imprimir el resultado
-        start, end
-        return True, start, end
-    else:
-        return False
-    
+
 def longestSubstring(str1,str2):
     # Necesito saber la longitud de cada string
     m = len(str1)
@@ -302,7 +258,22 @@ def encontrar_substring_comun(transmission1, transmission2):
 
 substring_comun, posiciones_comunes_t1, posiciones_comunes_t2 = encontrar_substring_comun(transmission1, transmission2)
 
-# Ahora, vamos a entregarle a la funcion los archivos que queremos analizar
+#Busco el palindromo, solo debo regresar las posiciones iniciales y finales
+def ispalindrome(transmission):
+
+    max_length = 1
+    startAt = 0
+    for i in range(len(transmission)):
+        for j in range(i, len(transmission)):
+            flag = 1
+            for k in range(0, ((j - i) // 2) + 1):
+                if (transmission[i + k] != transmission[j - k]):
+                    flag = 0
+            if (flag != 0 and (j - i + 1) > max_length):
+                startAt = i
+                max_length = j - i + 1
+            
+    return startAt, startAt + max_length - 1
 
 print("PARTE 1:")
 print()
@@ -313,34 +284,13 @@ print(f"En el archivo de {archivostrans[1]} se encuentra el código {archivosmco
 print(f"En el archivo de {archivostrans[1]} se encuentra el código {archivosmcode[1]}?", (contains_code(transmission2, mcode2)))
 print(f"En el archivo de {archivostrans[1]} se encuentra el código {archivosmcode[2]}?", (contains_code(transmission2, mcode3)))
 print()
-print(f"El archivo de {archivostrans[0]} contiene el codigo de {archivosmcode[0]} en reversa?", (contains_code_reversed(transmission1, mcode1)))
-print(f"El archivo de {archivostrans[0]} contiene el codigo de {archivosmcode[1]} en reversa?", (contains_code_reversed(transmission1, mcode2)))
-print(f"El archivo de {archivostrans[0]} contiene el codigo de {archivosmcode[2]} en reversa?", (contains_code_reversed(transmission1, mcode3)))
-print(f"El archivo de {archivostrans[1]} contiene el codigo de {archivosmcode[0]} en reversa?", (contains_code_reversed(transmission2, mcode1)))
-print(f"El archivo de {archivostrans[1]} contiene el codigo de {archivosmcode[1]} en reversa?", (contains_code_reversed(transmission2, mcode2)))
-print(f"El archivo de {archivostrans[1]} contiene el codigo de {archivosmcode[2]} en reversa?", (contains_code_reversed(transmission2, mcode3)))
-print()
 print("PARTE 2:")
 print()
-print(f"En el archivo de {archivostrans[0]} se encuentra el código {archivosmcode[0]}?", (contains_code2(transmission1, mcode1)))
-print(f"En el archivo de {archivostrans[0]} se encuentra el código {archivosmcode[1]}?", (contains_code2(transmission1, mcode2)))
-print(f"En el archivo de {archivostrans[0]} se encuentra el código {archivosmcode[2]}?", (contains_code2(transmission1, mcode3)))
-print(f"En el archivo de {archivostrans[1]} se encuentra el código {archivosmcode[0]}?", (contains_code2(transmission2, mcode1)))
-print(f"En el archivo de {archivostrans[1]} se encuentra el código {archivosmcode[1]}?", (contains_code2(transmission2, mcode2)))
-print(f"En el archivo de {archivostrans[1]} se encuentra el código {archivosmcode[2]}?", (contains_code2(transmission2, mcode3)))
-print()
-print(f"El archivo de {archivostrans[0]} contiene el codigo de {archivosmcode[0]} en reversa?", (contains_code_reversed2(transmission1, mcode1)))
-print(f"El archivo de {archivostrans[0]} contiene el codigo de {archivosmcode[1]} en reversa?", (contains_code_reversed2(transmission1, mcode2)))
-print(f"El archivo de {archivostrans[0]} contiene el codigo de {archivosmcode[2]} en reversa?", (contains_code_reversed2(transmission1, mcode3)))
-print(f"El archivo de {archivostrans[1]} contiene el codigo de {archivosmcode[0]} en reversa?", (contains_code_reversed2(transmission2, mcode1)))
-print(f"El archivo de {archivostrans[1]} contiene el codigo de {archivosmcode[1]} en reversa?", (contains_code_reversed2(transmission2, mcode2)))
-print(f"El archivo de {archivostrans[1]} contiene el codigo de {archivosmcode[2]} en reversa?", (contains_code_reversed2(transmission2, mcode3)))
+print(ispalindrome(transmission1))
+print(ispalindrome(transmission2))
 print()
 print("PARTE 3:")
 print("El substring más largo común entre los archivos de transmisión es:", longestSubstring(transmission1, transmission2))
-
-
-
 print(f"Posiciones en la {archivostrans[0]}:")
 for inicio, fin in posiciones_comunes_t1:
     print(f"Posición inicial: {inicio + 1}, Posición final: {fin + 1}")
@@ -350,9 +300,4 @@ print(f"Posiciones en la {archivostrans[1]}:")
 for inicio, fin in posiciones_comunes_t2:
     print(f"Posición inicial: {inicio + 1}, Posición final: {fin + 1}")
 
-    
-    
-    
-
-        
     
