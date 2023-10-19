@@ -16,7 +16,7 @@ transmission2 = []
 
 
 # Directorio donde se encuentran los archivos
-directoriotrans =''
+directoriotrans ='C:/Users/alanc/OneDrive/Desktop/COMPU/TC2038/Team4/ActInt1_Equipo_04/Equipo_04_main'
 
 # Patrón para buscar archivos que comiencen con "transmission"
 patrontrans = f'transmission*'
@@ -46,7 +46,7 @@ mcode2 = []
 mcode3 = []
 
 # Directorio donde se encuentran los archivos
-directoriomcode = ''
+directoriomcode = 'C:/Users/alanc/OneDrive/Desktop/COMPU/TC2038/Team4/ActInt1_Equipo_04/Equipo_04_main'
 
 # Patrón para buscar archivos que comiencen con "transmission"
 patronmcode = f'mcode*'
