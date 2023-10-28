@@ -31,6 +31,25 @@
 
 # < mostrar matriz final >
 
+# Ejemplo de entrada 2
+# 2
+# 5,2
+# 1,6
+# 5
+
+#Ejemplo de entrada 3
+# 4
+# 1,2,5,6
+# 2,3,4,5
+# 8
+
+#Ejemplo de entrada 4
+# 5
+# 1,2,3,4,5
+# 2,3,4,5,6
+# 8
+
+
 def knapsack(N, beneficios, pesos, W):
     # Inicializar matriz
     matriz = [[0 for x in range(W + 1)] for x in range(N + 1)]
