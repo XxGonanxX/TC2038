@@ -22,23 +22,39 @@ def read_input(filename):
 
     return N, distances, capacities, central_locations, new_central_location
 
+
 def prim(matrix):
+    num_vertices = len(matrix)
     start_vertex = 0
     visited = set([start_vertex])
-    edges = [(cost, start_vertex, to) for to, cost in enumerate(matrix[start_vertex])]
+    edges = [(cost, start_vertex, to) for to, cost in enumerate(matrix[start_vertex]) if cost < float('inf')]
     heapq.heapify(edges)
     MST = []
 
     while edges:
-        _, frm, to = heapq.heappop(edges)
+        cost, frm, to = heapq.heappop(edges)
         if to not in visited:
             visited.add(to)
-            MST.append((frm, to))
-            for next_to, next_cost in enumerate(matrix[to]):
-                if next_to not in visited and next_cost < float('inf'):
-                    heapq.heappush(edges, (next_cost, to, next_to))
+            MST.append((frm, to, cost))
+            edges.extend((next_cost, to, next_to) for next_to, next_cost in enumerate(matrix[to]) if next_to not in visited and next_cost < float('inf'))
+            heapq.heapify(edges)
 
     return MST
+
+def print_connections(matrix):
+    num_vertices = len(matrix)
+    for i in range(num_vertices):
+        print(f"Colonia {i + 1}:")
+        connections = [(j + 1, matrix[i][j]) for j in range(num_vertices) if matrix[i][j] < float('inf')]
+        if connections:
+            for neighbor, cost in connections:
+                if cost == 0:
+                    continue
+                    
+                else:
+                    print(f"  Colonia {neighbor}: {cost}")
+        else:
+            print()
 
 # Enfoque de vecino mas cercano
 def tsp(matrix):
@@ -117,6 +133,7 @@ def central_mas_cercana(nueva_central, centrales_exist):
 
     return distancia_entre_centrales(nueva_central, central_cercana)
 
+
 def main(input_filename):
     N, distances, capacities, central_locations, new_central_location = read_input(input_filename)
 
@@ -134,13 +151,14 @@ def main(input_filename):
 
     # Resultados
     print("Forma de cablear las colonias con fibra:\n")
-    print(str(prim_path) + '\n\n')
+    print(print_connections(distances))
     print("Ruta para repartir correspondencia:\n")
-    print(str(tsp_path) + '\n\n')
+    print(tsp_path)
+    print()
     print("Flujo máximo de información:\n")
     print(str(max_flow_graph) + '\n\n')
     print("Distancia más corta entre la nueva central y la más cercana:\n")
-    print(str(centro_mas_cercano) +'\n\n')
+    print(centro_mas_cercano)
     print()
 
 main("Equipo_04_Entrada_1.txt")
