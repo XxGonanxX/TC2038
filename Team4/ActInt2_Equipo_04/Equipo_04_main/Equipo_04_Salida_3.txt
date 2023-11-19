@@ -1,0 +1,21 @@
+Forma de cablear las colonias con fibra:
+
+[(0, 1), (1, 4), (0, 2), (1, 5), (5, 3)]
+
+
+Ruta para repartir correspondencia:
+
+[0, 1, 4, 2, 3, 5, 0]
+
+
+Flujo máximo de información:
+
+19
+
+
+Distancia más corta entre la nueva central y la más cercana:
+
+22.360679774997898
+
+
+

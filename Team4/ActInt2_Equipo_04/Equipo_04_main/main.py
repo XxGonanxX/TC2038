@@ -11,13 +11,13 @@ import math
 def read_input(filename):
     with open(filename, 'r') as file:
         N = int(file.readline())
-        _ = file.readline() # Ignorar línea vacía
+        # _ = file.readline() # Ignorar línea vacía
         distances = [list(map(int, file.readline().split())) for _ in range(N)]
-        _ = file.readline() # Ignorar línea vacía
+        # _ = file.readline() # Ignorar línea vacía
         capacities = [list(map(int, file.readline().split())) for _ in range(N)]
-        _ = file.readline() # Ignorar línea vacía
+        # _ = file.readline() # Ignorar línea vacía
         central_locations = [tuple(map(int, file.readline().strip('()\n').split(','))) for _ in range(N)]
-        _ = file.readline() # Ignorar línea vacía
+        # _ = file.readline() # Ignorar línea vacía
         new_central_location = tuple(map(int, file.readline().strip('()\n').split(',')))
 
     return N, distances, capacities, central_locations, new_central_location
